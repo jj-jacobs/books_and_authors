@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Enter a book or an author!</h1>
+
+    <form action="/create_author" method="POST">
+        <h2>Register an Author</h2>
+        <label for="first_name">first name:</label>
+        <input type="text" name="first_name">
+
+        <label for="last_name">last name:</label>
+        <input type="text" name="last_name" class="last_name">
+
+        <label for="notes">notes:</label>
+        <input type="text" name="notes">
+
+        <input type="submit" name="sub_author">
+    </form>
+
+    <form action="/create_book" method="POST">
+        <h2>Register a Book</h2>
+        <p>title:<input type="text" name="title"></p>
+        <p>description: <input type="text" name="description" class="description"></p>
+        <label for="choose_author">Choose an author:</label>
+        <select name="choose_author" id="choose_author" multiple>
+
+            {%for author in authors%}
+            <option value="{{'%s'%author.id}}">{{author.last_name}}</option>
+            {%endfor%}
+
+        </select>
+        <input type="submit" name="sub_book">
+    </form>
+    <h2>authors</h2>
+    {%for author in authors%}
+    <li>{{author.first_name}} {{author.last_name}}</li>
+    {%endfor%}
+    <h2>books</h2>
+    {%for book in books%}
+    <li>{{book.title}} {{book.description}}
+        {{book.author_id}} {%endfor%}</li>
+</body>
+
+</html>
