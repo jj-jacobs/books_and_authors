@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 8d57bd5dcb24
+Revision ID: e9c84857503d
 Revises: 
-Create Date: 2021-04-21 14:17:07.712881
+Create Date: 2021-04-30 15:36:44.961728
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8d57bd5dcb24'
+revision = 'e9c84857503d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,15 +22,13 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=255), nullable=True),
     sa.Column('last_name', sa.String(length=255), nullable=True),
-    sa.Column('notes', sa.String(length=10000), nullable=True),
+    sa.Column('notes', sa.Text(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('book',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=500), nullable=True),
-    sa.Column('description', sa.String(length=10000), nullable=True),
-    sa.Column('author_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['author_id'], ['author.id'], ondelete='cascade'),
+    sa.Column('description', sa.Text(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('owner',
